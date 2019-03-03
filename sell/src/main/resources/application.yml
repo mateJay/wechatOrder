@@ -1,0 +1,31 @@
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+##  path: D:/Logger 自动命名spring.log，下面的是自己命名
+#  file: D:/Logger/sell.log
+#  level:
+#    root: info
+#    com.imooc.logtest.LoggerTest: debug
+#logging:
+#  config: classpath:logback-spring.xml
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.0.102/sell?characterEncoding=utf-8&useSLL=false
+  jackson:
+    default-property-inclusion: non_null
+mybatis:
+  # 指定全局配置文件位置
+  config-location: classpath:mybatis/mybatis-config.xml
+  # 指定sql映射文件位置
+  mapper-locations: classpath:mybatis/mapper/*.xml
+server:
+  servlet:
+    context-path: /sell
+
+wechat:
+  mpAppId: wxf9a006903f86f4e5
+  mpAppSecret: 896ef591004ac092e49d796131d99cc4

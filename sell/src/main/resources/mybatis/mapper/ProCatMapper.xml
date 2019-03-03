@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imooc.mapper.ProductCategoryMapper">
+
+    <!--public ProductCategory getPrdCatById(Integer id);-->
+    <!--public void insertProCat(ProductCategory productCategory);-->
+    <!--private Integer categoryId;-->
+    <!--private  String categoryName;-->
+    <!--private Integer categoryType;-->
+    <select id="getPrdCatById" resultType="com.imooc.bean.ProductCategory">
+        SELECT * FROM product_category WHERE category_id=#{id}
+    </select>
+    <select id="getAll" resultType="com.imooc.bean.ProductCategory">
+        SELECT * FROM product_category
+    </select>
+
+    <select id="getPrdCatByList" resultType="com.imooc.bean.ProductCategory" parameterType="java.util.List">
+        SELECT * FROM product_category WHERE category_type in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+        #{item}
+        </foreach>
+    </select>
+
+    <insert id="insertProCat" useGeneratedKeys="true" keyProperty="categoryId" keyColumn="category_id">
+        INSERT INTO product_category(category_name,category_type) VALUES(#{categoryName},#{categoryType});
+    </insert>
+    <update id="updateProCat" parameterType="com.imooc.bean.ProductCategory">
+        UPDATE product_category SET category_name=#{categoryName},category_type=#{categoryType} WHERE category_id=#{categoryId};
+    </update>
+
+</mapper>

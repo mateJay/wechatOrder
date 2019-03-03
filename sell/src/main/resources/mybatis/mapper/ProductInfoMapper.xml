@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imooc.mapper.ProductInfoMapper">
+    <!--private String productId;-->
+    <!--//名字-->
+    <!--private String productName;-->
+    <!--//单价-->
+    <!--private BigDecimal productPrice;-->
+    <!--//库存-->
+    <!--private Integer productStock;-->
+    <!--//商品描述-->
+    <!--private String productDescription;-->
+    <!--//图片-->
+    <!--private String productIcon;-->
+    <!--//商品状态，默认0正常 1下架-->
+    <!--private Integer productStatus;-->
+    <!--//类目编号-->
+    <!--private Integer categoryType;-->
+    <select id="findByProductStatus" resultType="com.imooc.bean.ProductInfo">
+        SELECT * FROM product_info WHERE product_status=#{productStatus}
+    </select>
+    <select id="findAll" resultType="com.imooc.bean.ProductInfo">
+        SELECT * FROM product_info
+    </select>
+    <select id="findOneById" resultType="com.imooc.bean.ProductInfo">
+        SELECT * FROM product_info WHERE product_id=#{productId}
+    </select>
+
+    <insert id="save">
+        INSERT INTO product_info(product_id,product_name,product_price,
+                                  product_stock,product_description,
+                                  product_icon,product_status,category_type)
+                           VALUES(#{productId},#{productName},#{productPrice},
+                                  #{productStock},#{productDescription},
+                                  #{productIcon},#{productStatus},#{categoryType})
+    </insert>
+
+    <update id="update" parameterType="com.imooc.bean.ProductInfo">
+        UPDATE product_info SET product_name=#{productName},product_price=#{productPrice},
+                                  product_stock=#{productStock},product_description=#{productDescription},
+                                  product_icon=#{productIcon},product_status=#{productStatus},
+                                  category_type=#{categoryType} WHERE product_id=#{productId}
+    </update>
+
+</mapper>
